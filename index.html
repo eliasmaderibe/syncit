@@ -1,608 +1,528 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <title>Consultoria em TI | Infraestrutura e Serviços Gerenciados</title>
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sync IT • Infraestrutura, Segurança e Cloud</title>
+  <meta name="description" content="Soluções de TI sob medida para sua empresa: infraestrutura, segurança, nuvem e help desk." />
+
   <style>
-    :root {
-      --green: #36b44a;
-      --green-dark: #2f9b3f;
-      --blue: #005ca9;
-      --bg-page: #f5f7fb;
-      --bg-header: #ffffff;
-      --bg-card: #ffffff;
-      --text-main: #333333;
-      --text-soft: #6b7280;
-      --border-soft: #e2e8f0;
+    :root{
+      /* Mesma paleta da assinatura (azul + azul escuro) */
+      --blue: #1272ac;
+      --navy: #073a63;
+      --text: #142330;
+      --muted: #5a6c7a;
+      --bg: #f4f6f8;
+      --card: #ffffff;
+      --line: #d7dee6;
+      --shadow: 0 10px 30px rgba(7,58,99,.18);
+      --radius: 18px;
+      --max: 1120px;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.5;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{max-width:var(--max); margin:0 auto; padding:0 20px;}
+
+    /* Header / Nav */
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:saturate(160%) blur(10px);
+      background:rgba(7,58,99,.65);
+      border-bottom:1px solid rgba(255,255,255,.10);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px; padding:14px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      color:#fff; font-weight:800; letter-spacing:.3px;
+    }
+    .logo{
+      height:40px; width:auto;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,.22));
+    }
+    .brand span{font-size:18px}
+
+    nav ul{
+      list-style:none; margin:0; padding:0;
+      display:flex; gap:18px; align-items:center;
+      color:rgba(255,255,255,.90);
+      font-weight:600; font-size:14px;
+    }
+    nav a{padding:8px 10px; border-radius:10px;}
+    nav a:hover{background:rgba(255,255,255,.10)}
+    .cta{display:flex; gap:10px; align-items:center;}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      border:1px solid rgba(255,255,255,.22);
+      padding:10px 14px;
+      border-radius:12px;
+      font-weight:800;
+      font-size:14px;
+      color:#fff;
+      background:rgba(18,114,172,.15);
+      transition:.18s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{transform:translateY(-1px); background:rgba(18,114,172,.28)}
+    .btn.primary{
+      background:linear-gradient(135deg, var(--blue), #0d5f92);
+      border-color:rgba(255,255,255,.18);
+      box-shadow:0 10px 24px rgba(18,114,172,.35);
+    }
+    .btn.primary:hover{filter:brightness(1.05)}
+    .hamb{display:none}
+
+    /* Hero */
+    .hero{
+      position:relative;
+      color:#fff;
+      background:
+        radial-gradient(1200px 500px at 70% 20%, rgba(18,114,172,.65), rgba(7,58,99,0) 60%),
+        linear-gradient(135deg, var(--navy), #062a47 55%, #041a2e);
+      overflow:hidden;
+    }
+    .hero:before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,.14), transparent 35%),
+        radial-gradient(circle at 75% 45%, rgba(255,255,255,.10), transparent 42%),
+        linear-gradient( to bottom, rgba(255,255,255,.06), rgba(255,255,255,0) 45% );
+      pointer-events:none;
+      mix-blend-mode:screen;
+    }
+    .hero:after{
+      content:"";
+      position:absolute; left:-10%; right:-10%; bottom:-1px; height:120px;
+      background:var(--bg);
+      border-top-left-radius:100% 100%;
+      border-top-right-radius:100% 100%;
+      box-shadow:0 -10px 30px rgba(0,0,0,.18);
+    }
+    .hero-inner{
+      display:grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap:32px;
+      padding:54px 0 90px;
+      position:relative;
+    }
+    .hero h1{
+      margin:0 0 12px;
+      font-size:clamp(32px, 3.6vw, 54px);
+      line-height:1.05;
+      letter-spacing:-.8px;
+    }
+    .hero h1 .accent{color:#7fd2ff}
+    .hero p{
+      margin:0 0 18px;
+      color:rgba(255,255,255,.86);
+      max-width:56ch;
+      font-size:16px;
+    }
+    .hero-actions{display:flex; gap:12px; flex-wrap:wrap}
+    .pill{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.16);
+      color:rgba(255,255,255,.88);
+      font-weight:700;
+      font-size:13px;
+      width:max-content;
+      margin-bottom:10px;
     }
 
-    body {
-      font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--bg-page);
-      color: var(--text-main);
-      line-height: 1.5;
+    .hero-art{
+      position:relative;
+      border-radius:var(--radius);
+      background:linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow:0 18px 60px rgba(0,0,0,.35);
+      overflow:hidden;
+      min-height:290px;
+    }
+    .gridlines{
+      position:absolute; inset:-40px;
+      background:
+        linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
+      background-size: 42px 42px;
+      transform:rotate(12deg);
+      opacity:.35;
+    }
+    .cloud{
+      position:absolute;
+      width:160px; height:90px;
+      border-radius:999px;
+      background:rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.18);
+      filter:drop-shadow(0 10px 22px rgba(0,0,0,.18));
+    }
+    .cloud:before,.cloud:after{
+      content:"";
+      position:absolute;
+      background:inherit; border:inherit;
+      width:70px; height:70px; border-radius:999px;
+      top:-30px;
+    }
+    .cloud:before{left:18px}
+    .cloud:after{right:18px; top:-22px; width:80px; height:80px}
+    .cloud.c1{right:18px; top:26px; width:240px; height:120px}
+    .cloud.c2{left:18px; bottom:22px; width:190px; height:100px; opacity:.8}
+    .cloud.c3{right:70px; bottom:90px; width:140px; height:78px; opacity:.6}
+
+    /* Sections */
+    section{padding:54px 0}
+    .section-title{text-align:center; margin-bottom:26px;}
+    .section-title h2{
+      margin:0;
+      font-size:clamp(24px, 2.4vw, 34px);
+      letter-spacing:-.5px;
+      color:var(--navy);
+    }
+    .section-title p{margin:8px 0 0; color:var(--muted); font-weight:600;}
+    .divider{
+      width:100%; max-width:720px;
+      margin:14px auto 0; height:1px;
+      background:linear-gradient(90deg, transparent, var(--line), transparent);
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    /* Cards */
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap:16px;
+      margin-top:22px;
+    }
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow:0 8px 24px rgba(20,35,48,.06);
+      transition:.18s ease;
+      min-height:210px;
+    }
+    .card:hover{transform:translateY(-3px); box-shadow:0 14px 36px rgba(7,58,99,.12)}
+    .card-link{display:block; color:inherit}
+    .card-link:focus-visible{outline:3px solid rgba(18,114,172,.35); outline-offset:4px; border-radius:var(--radius)}
+    .card .more{margin-top:10px; font-weight:800; color:var(--blue); font-size:13.5px}
+
+    .icon{
+      width:54px; height:54px; border-radius:16px;
+      background:linear-gradient(135deg, rgba(18,114,172,.18), rgba(7,58,99,.10));
+      border:1px solid rgba(18,114,172,.18);
+      display:grid; place-items:center;
+      margin-bottom:12px;
+      color:var(--navy);
+    }
+    .card h3{margin:0 0 6px; font-size:16px; color:var(--navy)}
+    .card p{margin:0; color:var(--muted); font-weight:600; font-size:13.5px}
+
+    /* Band */
+    .band{
+      background:linear-gradient(135deg, var(--navy), #062a47 60%, #041a2e);
+      color:#fff;
+      position:relative;
+      overflow:hidden;
+    }
+    .band:before{
+      content:""; position:absolute; inset:-80px;
+      background:
+        radial-gradient(circle at 25% 40%, rgba(127,210,255,.18), transparent 45%),
+        radial-gradient(circle at 75% 55%, rgba(255,255,255,.08), transparent 50%),
+        linear-gradient(rgba(255,255,255,.06), rgba(255,255,255,0) 40%);
+      transform:rotate(6deg);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .why-grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:18px;
+      position:relative;
+      margin-top:22px;
+    }
+    .why{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:var(--radius);
+      padding:18px;
+    }
+    .why h3{margin:10px 0 6px}
+    .why p{margin:0; color:rgba(255,255,255,.80); font-weight:600; font-size:13.5px}
+    .why .icon{
+      background:rgba(255,255,255,.08);
+      border-color:rgba(255,255,255,.14);
+      color:#fff;
     }
 
-    .container {
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
+    /* CTA box */
+    .cta-box .btn{
+      color: var(--navy);
+      border: 1px solid var(--line);
+      background: #eef4f8;
     }
-
-    /* HEADER */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: var(--bg-header);
-      border-bottom: 1px solid #e5e7eb;
-      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
+    .cta-box .btn:hover{
+      background: #e6f0f7;
     }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.9rem 0;
+    .cta-box .btn.primary{
+      color:#fff;
+      border-color: rgba(18,114,172,.25);
+      background: linear-gradient(135deg, var(--blue), #0d5f92);
     }
+    .cta-box .btn.primary:hover{filter:brightness(1.05)}
 
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 0.7rem;
+
+    .cta-box{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:calc(var(--radius) + 8px);
+      padding:26px;
+      box-shadow:var(--shadow);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
     }
+    .cta-box h3{margin:0; color:var(--navy); font-size:22px}
+    .cta-box p{margin:6px 0 0; color:var(--muted); font-weight:600}
 
-    .logo-mark {
-      width: 46px;
-      height: 46px;
-      border-radius: 8px;
-      background: linear-gradient(135deg, #0ea5e9, #22c55e);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ffffff;
-      font-weight: 800;
-      font-size: 1.2rem;
+    /* Footer */
+    footer{
+      padding:28px 0;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-weight:600;
     }
-
-    .logo-text-main {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--blue);
+    .foot{
+      display:flex; align-items:flex-start; justify-content:space-between;
+      gap:16px; flex-wrap:wrap;
     }
+    .small{font-size:13px}
 
-    .logo-text-sub {
-      font-size: 0.75rem;
-      color: var(--text-soft);
-      margin-top: 1px;
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-inner{grid-template-columns:1fr; padding:44px 0 90px}
+      .cards{grid-template-columns:repeat(auto-fit, minmax(240px, 1fr))}
+      .why-grid{grid-template-columns:1fr}
+      nav ul{display:none}
+      .hamb{display:inline-flex}
     }
-
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-      font-size: 0.9rem;
-      color: #4b5563;
-    }
-
-    .nav-links a {
-      position: relative;
-      padding-bottom: 0.2rem;
-      transition: color 0.15s ease;
-    }
-
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0;
-      height: 2px;
-      background: var(--green);
-      transition: width 0.2s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--green-dark);
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    .nav-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.45rem 1.1rem;
-      border-radius: 999px;
-      background: var(--green);
-      color: #ffffff;
-      font-size: 0.85rem;
-      font-weight: 600;
-      border: none;
-      cursor: pointer;
-      transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
-      box-shadow: 0 2px 8px rgba(54, 180, 74, 0.35);
-    }
-
-    .nav-cta:hover {
-      background: var(--green-dark);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(54, 180, 74, 0.45);
-    }
-
-    /* HERO */
-    .hero {
-      padding: 2.5rem 0 2rem;
-      background: #ffffff;
-      border-bottom: 1px solid #e5e7eb;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-      gap: 2rem;
-      align-items: center;
-    }
-
-    .hero-kicker {
-      font-size: 0.8rem;
-      color: var(--green-dark);
-      font-weight: 600;
-      margin-bottom: 0.4rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .hero-title {
-      font-size: clamp(1.9rem, 3vw, 2.4rem);
-      font-weight: 700;
-      color: var(--blue);
-      margin-bottom: 0.5rem;
-    }
-
-    .hero-sub {
-      font-size: 0.95rem;
-      color: var(--text-soft);
-      max-width: 34rem;
-      margin-bottom: 1rem;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-bottom: 1rem;
-    }
-
-    .btn-outline {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      padding: 0.5rem 1.1rem;
-      border-radius: 999px;
-      border: 1px solid #d1d5db;
-      font-size: 0.85rem;
-      color: #374151;
-      background: #ffffff;
-      cursor: pointer;
-      transition: border 0.15s ease, color 0.15s ease, background 0.15s ease;
-    }
-
-    .btn-outline:hover {
-      border-color: var(--blue);
-      color: var(--blue);
-      background: #f3f4ff;
-    }
-
-    .hero-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      font-size: 0.8rem;
-      color: var(--text-soft);
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    .hero-badge-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: var(--green);
-    }
-
-    .hero-box {
-      background: #f1f5f9;
-      border-radius: 12px;
-      padding: 1rem 1.1rem;
-      border: 1px solid #e2e8f0;
-      font-size: 0.85rem;
-    }
-
-    .hero-box-title {
-      font-weight: 600;
-      color: #111827;
-      margin-bottom: 0.35rem;
-    }
-
-    .hero-box p {
-      color: #4b5563;
-      margin-bottom: 0.3rem;
-    }
-
-    .hero-box ul {
-      margin-left: 1rem;
-      color: #374151;
-    }
-
-    .hero-box li {
-      margin-bottom: 0.2rem;
-    }
-
-    /* SECTION BASE */
-    section.block {
-      padding: 2.5rem 0 2.8rem;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--blue);
-      margin-bottom: 0.2rem;
-    }
-
-    .section-line {
-      width: 60px;
-      height: 3px;
-      background: var(--green);
-      margin: 0.3rem auto 0.7rem;
-      border-radius: 999px;
-    }
-
-    .section-sub {
-      text-align: center;
-      color: var(--text-soft);
-      font-size: 0.95rem;
-      max-width: 40rem;
-      margin: 0 auto 2rem;
-    }
-
-    /* GRID DE SERVIÇOS */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 1rem;
-    }
-
-    .service-card {
-      background: var(--bg-card);
-      border-radius: 12px;
-      border: 1px solid var(--border-soft);
-      padding: 1.2rem 0.9rem 1rem;
-      text-align: center;
-      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.55rem;
-    }
-
-    .service-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 12px;
-      border: 2px solid var(--green);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--green);
-      font-size: 1.6rem;
-      margin-bottom: 0.2rem;
-    }
-
-    .service-title {
-      font-size: 0.86rem;
-      font-weight: 700;
-      color: var(--blue);
-      text-transform: uppercase;
-    }
-
-    .service-btn {
-      margin-top: 0.25rem;
-      padding: 0.4rem 0.9rem;
-      border-radius: 999px;
-      border: none;
-      background: var(--green);
-      color: #ffffff;
-      font-size: 0.8rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.15s ease, transform 0.1s ease;
-    }
-
-    .service-btn:hover {
-      background: var(--green-dark);
-      transform: translateY(-1px);
-    }
-
-    .services-whats {
-      margin-top: 2rem;
-      text-align: center;
-    }
-
-    .services-whats button {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.55rem 1.4rem;
-      border-radius: 999px;
-      border: none;
-      background: #25d366;
-      color: #ffffff;
-      font-weight: 600;
-      font-size: 0.9rem;
-      cursor: pointer;
-      box-shadow: 0 2px 10px rgba(37, 211, 102, 0.45);
-      transition: background 0.15s ease, transform 0.1s ease;
-    }
-
-    .services-whats button:hover {
-      background: #1eb255;
-      transform: translateY(-1px);
-    }
-
-    /* CONTATO SIMPLES */
-    .contact-strip {
-      padding: 1.8rem 0 2rem;
-      background: #ffffff;
-      border-top: 1px solid #e5e7eb;
-      border-bottom: 1px solid #e5e7eb;
-    }
-
-    .contact-strip-inner {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      font-size: 0.9rem;
-    }
-
-    .contact-strip span {
-      color: var(--text-soft);
-    }
-
-    .contact-strip strong {
-      color: #111827;
-    }
-
-    /* FOOTER */
-    footer {
-      padding: 1rem 0;
-      font-size: 0.8rem;
-      color: var(--text-soft);
-      text-align: center;
-    }
-
-    /* RESPONSIVO */
-    @media (max-width: 1024px) {
-      .services-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
-
-      .nav-cta {
-        display: none;
-      }
-
-      .hero-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .services-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .hero {
-        padding-top: 1.8rem;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .services-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
+    @media (max-width: 520px){
+      .cards{grid-template-columns:1fr}
+      .cta-box{flex-direction:column; align-items:flex-start}
     }
   </style>
 </head>
-<body>
 
-  <!-- HEADER -->
+<body>
+  <!-- Ajuste aqui se mudar número -->
+  <script>
+    window.SYNCIT = {
+      whatsapp: "5547991070975", // só números, com DDI+DDD
+      site: "syncit.com.br",
+      email: "contato@syncit.com.br"
+    };
+  </script>
+
   <header>
     <div class="container">
       <div class="nav">
-        <div class="nav-left">
-          <div class="logo-mark">IT</div>
-          <div>
-            <div class="logo-text-main">Sua Consultoria de TI</div>
-            <div class="logo-text-sub">Infraestrutura • Segurança • Produtividade</div>
-          </div>
-        </div>
-        <nav class="nav-links">
-          <a href="#home">Home</a>
-          <a href="#servicos">Serviços</a>
-          <a href="#clientes">Clientes</a>
-          <a href="#contato">Contato</a>
+        <a class="brand" href="#inicio" aria-label="Ir para o início">
+          <img class="logo" src="assets/logo.png" alt="Sync IT" />
+          <span>SYNC IT</span>
+        </a>
+
+        <nav aria-label="Menu principal">
+          <ul>
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#sobre">Sobre Nós</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
         </nav>
-        <a href="#contato" class="nav-cta">WhatsApp atendimento</a>
+
+        <div class="cta">
+          <a class="btn hamb" href="#contato">Menu</a>
+          <a class="btn primary" id="btnTopWhats" href="#" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- HERO -->
-  <main id="home">
-    <section class="hero">
+  <main>
+    <!-- HERO -->
+    <section id="inicio" class="hero">
       <div class="container">
-        <div class="hero-grid">
+        <div class="hero-inner">
           <div>
-            <div class="hero-kicker">Consultoria especializada em TI</div>
-            <h1 class="hero-title">Serviços completos de infraestrutura e suporte para empresas</h1>
-            <p class="hero-sub">
-              Implantamos e gerenciamos sua infraestrutura de TI para garantir segurança, disponibilidade e
-              produtividade. Ideal para empresas que querem focar no negócio e deixar a TI com especialistas.
-            </p>
-
+            <div class="pill">Infraestrutura • Segurança • Cloud • Help Desk</div>
+            <h1>Conectando<br/>Seu Negócio ao <span class="accent">Futuro</span></h1>
+            <p>Soluções de TI sob medida para sua empresa — mais estabilidade, segurança e produtividade no dia a dia.</p>
             <div class="hero-actions">
-              <a href="#servicos" class="nav-cta" style="font-size: 0.9rem;">Ver serviços de TI</a>
-              <a href="#contato" class="btn-outline">Falar com um especialista</a>
-            </div>
-
-            <div class="hero-badges">
-              <div class="hero-badge">
-                <span class="hero-badge-dot"></span>
-                <span>Atendimento para pequenas e médias empresas</span>
-              </div>
-              <div class="hero-badge">
-                <span class="hero-badge-dot"></span>
-                <span>Projetos sob medida e contratos mensais</span>
-              </div>
+              <a class="btn primary" id="btnHeroWhats" href="#" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+              <a class="btn" href="#servicos">Saiba Mais</a>
             </div>
           </div>
 
-          <div>
-            <div class="hero-box">
-              <div class="hero-box-title">Visão completa do seu ambiente de TI</div>
-              <p>
-                Realizamos um diagnóstico inicial do ambiente (servidores, rede, segurança, backup e nuvem) e
-                apresentamos um plano de melhorias.
-              </p>
-              <ul>
-                <li>• Mapeamento de riscos e pontos críticos</li>
-                <li>• Prioridade para ações de alto impacto</li>
-                <li>• Recomendações em linguagem clara para a gestão</li>
-              </ul>
-            </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="gridlines"></div>
+            <div class="cloud c1"></div>
+            <div class="cloud c2"></div>
+            <div class="cloud c3"></div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- SERVIÇOS -->
-    <section id="servicos" class="block">
+    <section id="servicos">
       <div class="container">
-        <h2 class="section-title">Serviços de TI</h2>
-        <div class="section-line"></div>
-        <p class="section-sub">
-          A consultoria oferece um portfólio completo de serviços de infraestrutura, segurança e produtividade para
-          empresas que buscam um ambiente de TI estável e bem gerenciado.
-        </p>
-
-        <div class="services-grid">
-          <div class="service-card">
-            <div class="service-icon">👨‍💻</div>
-            <div class="service-title">Gestão de TI terceirizada</div>
-            <button class="service-btn">Saiba mais</button>
-          </div>
-
-          <div class="service-card">
-            <div class="service-icon">🛡️</div>
-            <div class="service-title">Firewall corporativo</div>
-            <button class="service-btn">Saiba mais</button>
-          </div>
-
-          <div class="service-card">
-            <div class="service-icon">☁️</div>
-            <div class="service-title">Backup em nuvem</div>
-            <button class="service-btn">Saiba mais</button>
-          </div>
-
-          <div class="service-card">
-            <div class="service-icon">📊</div>
-            <div class="service-title">Power BI para empresas</div>
-            <button class="service-btn">Saiba mais</button>
-          </div>
-
-          <div class="service-card">
-            <div class="service-icon">📶</div>
-            <div class="service-title">Wi-Fi corporativo</div>
-            <button class="service-btn">Saiba mais</button>
-          </div>
-
-          <div class="service-card">
-            <div class="service-icon">🧩</div>
-            <div class="service-title">Projetos personalizados</div>
-            <button class="service-btn">Saiba mais</button>
-          </div>
-
-          <div class="service-card">
-            <div class="service-icon">📡</div>
-            <div class="service-title">Monitoramento de TI</div>
-            <button class="service-btn">Saiba mais</button>
-          </div>
-
-          <div class="service-card">
-            <div class="service-icon">💻</div>
-            <div class="service-title">Licenciamento de softwares</div>
-            <button class="service-btn">Saiba mais</button>
-          </div>
-
-          <div class="service-card">
-            <div class="service-icon">🧿</div>
-            <div class="service-title">Antivírus corporativo</div>
-            <button class="service-btn">Saiba mais</button>
-          </div>
-
-          <div class="service-card">
-            <div class="service-icon">🟩</div>
-            <div class="service-title">Projeto Microsoft 365</div>
-            <button class="service-btn">Saiba mais</button>
-          </div>
+        <div class="section-title">
+          <h2>Nossos Serviços</h2>
+          <p>Soluções inteligentes para sua empresa</p>
+          <div class="divider"></div>
         </div>
 
-        <div class="services-whats">
-          <a href="https://wa.me/5599999999999" target="_blank">
-            <button>
-              💬 Falar com um especialista
-            </button>
+        <div class="cards">
+          <article class="card">
+            <div class="icon" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                <path d="M4 6.5C4 5.12 5.12 4 6.5 4h11C19.88 4 21 5.12 21 6.5v2C21 9.88 19.88 11 18.5 11h-11C5.12 11 4 9.88 4 8.5v-2Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M4 15.5C4 14.12 5.12 13 6.5 13h11c1.38 0 2.5 1.12 2.5 2.5v2C21 18.88 19.88 20 18.5 20h-11C5.12 20 4 18.88 4 17.5v-2Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M7 7h.01M7 16h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Infraestrutura de TI</h3>
+            <p>Gestão e suporte de redes, servidores, backups e performance.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                <path d="M12 3l7 4v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V7l7-4Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M9.5 12l1.8 1.8L15 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Segurança da Informação</h3>
+            <p>Proteção contra ameaças, políticas, controles e boas práticas.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                <path d="M7 18h10a4 4 0 0 0 .7-7.94A5 5 0 0 0 8.2 8.6 3.5 3.5 0 0 0 7 18Z" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </div>
+            <h3>Computação em Nuvem</h3>
+            <p>Cloud sob medida: Microsoft 365, migrações e automação.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                <path d="M14.7 6.3a4 4 0 0 0-5.4 5.4l-6 6a2 2 0 0 0 2.8 2.8l6-6a4 4 0 0 0 5.4-5.4l-2.1 2.1-2.8-2.8 2.1-2.1Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Suporte e Help Desk</h3>
+            <p>Atendimento eficiente, padronização e resolução rápida.</p>
+          </article>
+
+          <a class="card-link" href="gestao-ti.html" aria-label="Gestão de TI Terceirizada - abrir página">
+            <article class="card">
+              <div class="icon" aria-hidden="true">
+                <!-- gestão -->
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 3v2M12 19v2M4 12H2M22 12h-2M6.2 6.2 4.8 4.8M19.2 19.2l-1.4-1.4M6.2 17.8 4.8 19.2M19.2 4.8l-1.4 1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </div>
+              <h3>Gestão de TI Terceirizada</h3>
+              <p>Terceirize a TI e tenha monitoramento, suporte e estratégia com especialistas.</p>
+              <div class="more">Saiba mais →</div>
+            </article>
           </a>
+
         </div>
       </div>
     </section>
 
-    <!-- CONTATO RESUMIDO -->
-    <section id="contato" class="contact-strip">
+    <!-- SOBRE -->
+    <section id="sobre" class="band">
       <div class="container">
-        <div class="contact-strip-inner">
-          <div>
-            <strong>Precisa organizar a TI da sua empresa?</strong><br />
-            <span>Envie um resumo do ambiente (número de usuários, servidores, sistemas) e receba uma proposta sem compromisso.</span>
+        <div class="section-title">
+          <h2 style="color:#fff">Por Que Escolher a Sync IT?</h2>
+          <p style="color:rgba(255,255,255,.80)">Foco em resultado, segurança e continuidade do seu negócio</p>
+          <div class="divider" style="background:linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent)"></div>
+        </div>
+
+        <div class="why-grid">
+          <div class="why">
+            <div class="icon" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2l2.5 5 5.5.8-4 3.9 1 5.5-5-2.6-5 2.6 1-5.5-4-3.9 5.5-.8L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Experiência e Expertise</h3>
+            <p>Processos, diagnóstico preciso e entrega com qualidade.</p>
           </div>
+
+          <div class="why">
+            <div class="icon" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                <path d="M12 3v3M12 18v3M4.2 6.2l2.1 2.1M17.7 17.7l2.1 2.1M3 12h3M18 12h3M6.3 17.7l-2.1 2.1M19.8 6.2l-2.1 2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </div>
+            <h3>Tecnologia de Ponta</h3>
+            <p>Soluções atuais, seguras e alinhadas ao seu cenário.</p>
+          </div>
+
+          <div class="why">
+            <div class="icon" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                <path d="M16 11a4 4 0 1 0-8 0v4a4 4 0 1 0 8 0v-4Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 9v6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Atendimento Personalizado</h3>
+            <p>Comunicação clara e foco no que sua empresa precisa.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATO / CTA -->
+    <section id="contato">
+      <div class="container">
+        <div class="cta-box">
           <div>
-            <div><strong>E-mail:</strong> contato@suaempresa-ti.com.br</div>
-            <div><strong>WhatsApp:</strong> (47) 9 9999-9999</div>
+            <h3>Pronto para transformar sua TI?</h3>
+            <p>Chame no WhatsApp e receba um atendimento rápido.</p>
+            <p class="small" style="margin-top:10px">
+              WhatsApp: <strong>(47) 99107-0975</strong>
+            </p>
+          </div>
+
+          <div style="display:flex; gap:12px; flex-wrap:wrap">
+            <a class="btn primary" id="btnCtaWhats" href="#" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+            <a class="btn" id="btnEmail" href="#">Enviar e-mail</a>
           </div>
         </div>
       </div>
@@ -611,12 +531,28 @@
 
   <footer>
     <div class="container">
-      © <span id="ano"></span> Sua Consultoria de TI · Infraestrutura e serviços gerenciados.
+      <div class="foot">
+        <div class="brand" style="color:var(--navy)">
+          <img class="logo" src="assets/logo.png" alt="Sync IT" style="filter:none;height:34px" />
+          <span>SYNC IT</span>
+        </div>
+        <div class="small">
+          © <span id="year"></span> Sync IT • Infraestrutura • Segurança • Cloud • Help Desk
+        </div>
+      </div>
     </div>
-  </footer>
 
-  <script>
-    document.getElementById("ano").textContent = new Date().getFullYear();
-  </script>
+    <script>
+      const y = document.getElementById("year");
+      if (y) y.textContent = new Date().getFullYear();
+
+      const wa = `https://wa.me/${window.SYNCIT.whatsapp}`;
+      document.getElementById("btnTopWhats").href = wa;
+      document.getElementById("btnHeroWhats").href = wa;
+      document.getElementById("btnCtaWhats").href = wa;
+
+      document.getElementById("btnEmail").href = `mailto:${window.SYNCIT.email}`;
+    </script>
+  </footer>
 </body>
 </html>

@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gestão de TI Terceirizada • Sync IT</title>
+  <meta name="description" content="Gestão de TI terceirizada com suporte remoto, telefônico e presencial. Estratégia, segurança e monitoramento." />
+  <style>
+
+    :root{
+      --blue: #1272ac;
+      --navy: #073a63;
+      --text: #142330;
+      --muted: #5a6c7a;
+      --bg: #f4f6f8;
+      --card: #ffffff;
+      --line: #d7dee6;
+      --shadow: 0 10px 30px rgba(7,58,99,.18);
+      --radius: 18px;
+      --max: 980px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.6;
+    }
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--max); margin:0 auto; padding:0 20px;}
+
+    /* Header / Nav */
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:saturate(160%) blur(10px);
+      background:rgba(7,58,99,.65);
+      border-bottom:1px solid rgba(255,255,255,.10);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px; padding:14px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      color:#fff; font-weight:800; letter-spacing:.3px;
+    }
+    .logo{
+      height:40px; width:auto;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,.22));
+    }
+    .brand span{font-size:18px}
+
+    nav ul{
+      list-style:none; margin:0; padding:0;
+      display:flex; gap:18px; align-items:center;
+      color:rgba(255,255,255,.90);
+      font-weight:600; font-size:14px;
+    }
+    nav a{padding:8px 10px; border-radius:10px;}
+    nav a:hover{background:rgba(255,255,255,.10)}
+    .cta{display:flex; gap:10px; align-items:center;}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      border:1px solid rgba(255,255,255,.22);
+      padding:10px 14px;
+      border-radius:12px;
+      font-weight:800;
+      font-size:14px;
+      color:#fff;
+      background:rgba(18,114,172,.15);
+      transition:.18s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{transform:translateY(-1px); background:rgba(18,114,172,.28)}
+    .btn.primary{
+      background:linear-gradient(135deg, var(--blue), #0d5f92);
+      border-color:rgba(255,255,255,.18);
+      box-shadow:0 10px 24px rgba(18,114,172,.35);
+    }
+    .btn.primary:hover{filter:brightness(1.05)}
+    .hamb{display:none}
+
+
+    .hero{
+      padding:34px 0 14px;
+      background:linear-gradient(135deg, var(--navy), #062a47 60%, #041a2e);
+      color:#fff;
+    }
+    .hero h1{margin:0 0 6px; font-size:clamp(26px, 3.2vw, 40px); letter-spacing:-.6px;}
+    .hero p{margin:0; color:rgba(255,255,255,.82); font-weight:600}
+    .crumbs{margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+    .crumbs a{color:rgba(255,255,255,.92); font-weight:800}
+    .crumbs span{color:rgba(255,255,255,.70); font-weight:800}
+
+    .content{padding:24px 0 54px;}
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:calc(var(--radius) + 8px);
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+    h2{
+      margin:18px 0 10px;
+      color:var(--navy);
+      letter-spacing:-.3px;
+      font-size:20px;
+      text-transform:uppercase;
+    }
+    p{margin:0 0 12px; color:var(--muted); font-weight:600}
+    ul{margin:0 0 12px 18px; color:var(--muted); font-weight:700}
+    li{margin:8px 0}
+    .section{padding-top:8px}
+    footer{
+      padding:28px 0;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-weight:600;
+    }
+    .foot{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; align-items:flex-start}
+    .small{font-size:13px}
+    @media (max-width: 520px){
+      .logo{height:34px}
+    }
+  
+
+    @media (max-width: 980px){
+      .hero-inner{grid-template-columns:1fr; padding:44px 0 90px}
+
+  </style>
+
+  <!-- Favicons -->
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+
+<style>
+.about-card h2 { font-size: 22px; margin-top: 32px; }
+.about-card p { line-height: 1.7; }
+.about-card ul { margin-left: 20px; }
+.about-card ul li { margin-bottom: 8px; }
+.about-card ul { columns: 2; column-gap: 40px; }
+@media (max-width:768px){
+  .about-card ul{ columns:1; }
+}
+</style>
+
+</head>
+<body>
+  <script>
+    window.SYNCIT = {
+      whatsapp: "5547991070975",
+      email: "contato@syncit.com.br"
+    };
+  </script>
+
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="index.html#inicio" aria-label="Ir para o início">
+          <img class="logo" src="assets/logo.png" alt="Sync IT" />
+          <span>SYNC IT</span>
+        </a>
+
+        <nav aria-label="Menu principal">
+          <ul>
+            <li><a href="index.html#inicio">Início</a></li>
+            <li><a href="index.html#servicos">Serviços</a></li>
+            <li><a href="index.html#sobre">Sobre Nós</a></li>
+            <li><a href="index.html#contato">Contato</a></li>
+          </ul>
+        </nav>
+
+        <div class="cta">
+          <a class="btn hamb" href="index.html#contato">Menu</a>
+          <a class="btn primary" id="btnTopWhats" href="index.html#" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+        
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Sobre Nós</h1>
+      <p>Trabalhe com a tranquilidade de que tudo estará funcionando.</p>
+      <div class="crumbs">
+        <a href="index.html">Início</a>
+        <span>›</span>
+        <span>Gestão de TI Terceirizada</span>
+      </div>
+    </div>
+  </section>
+
+  
+
+<main class="content">
+  <div class="container">
+    <div class="card about-card">
+
+      <h2>Sobre Nós</h2>
+      <div class=\"about-highlight\"><p><strong>A Sync IT</strong> é uma empresa de consultoria e serviços em <strong>Tecnologia da Informação</strong>, focada em ajudar empresas a terem uma TI mais <strong>estável</strong>, <strong>segura</strong> e <strong>produtiva</strong>, com atendimento em toda a região <strong>Norte</strong> e <strong>Vale do Itajaí (SC)</strong>.</p></div>
+
+      <p>Atuamos como parceiro estratégico do seu negócio: entendemos o cenário atual, fazemos um diagnóstico completo e montamos um plano de ação personalizado para evoluir sua infraestrutura e reduzir falhas, custos e riscos. Nosso trabalho é garantir que sua tecnologia funcione <em>“em sincronia”</em> com os seus objetivos — do dia a dia do suporte até projetos mais robustos.</p>
+
+      <p><strong>Principais soluções da Sync IT:</strong></p>
+      <ul>
+        <li>Infraestrutura de TI (servidores, redes, Wi‑Fi corporativo, equipamentos e padronização)</li>
+        <li>Suporte técnico e manutenção (preventiva e corretiva, presencial e remoto)</li>
+        <li>Gestão de TI terceirizada (rotinas, monitoramento, melhorias contínuas e documentação)</li>
+        <li>Cibersegurança (boas práticas, antivírus corporativo, firewall, políticas e controles)</li>
+        <li>Microsoft 365 (implantação, migração, contas, e‑mail, segurança e produtividade)</li>
+        <li>Backup e continuidade (backup em nuvem, rotinas de testes e recuperação)</li>
+        <li>Projetos e melhorias (expansão de rede, reorganização de ambiente, upgrades e otimizações)</li>
+      </ul>
+
+      <p>Se você quer mais tranquilidade e uma TI que realmente ajude sua empresa a crescer, fale com a <strong>Sync IT</strong> e descubra a melhor solução para o seu cenário.</p>
+
+
+      <h2>Visão</h2>
+      <p>Ser reconhecida como uma empresa referência em tecnologia da informação, destacando-se pela excelência operacional, inovação contínua, segurança e confiabilidade, gerando valor estratégico e resultados sustentáveis para clientes e parceiros.</p>
+
+      <h2>Missão</h2>
+      <p>Entregar soluções de tecnologia da informação seguras, eficientes e personalizadas, atuando como parceira estratégica das pequenas e médias empresas, simplificando processos, elevando a performance operacional e garantindo a melhor relação custo-benefício.</p>
+
+      
+
+      <h2>Valores</h2>
+      <ul>
+        <li><strong>Parceria com o cliente:</strong> atuação próxima e alinhada aos objetivos do negócio.</li>
+        <li><strong>Confiabilidade e segurança:</strong> proteção de informações e sistemas com ética e boas práticas.</li>
+        <li><strong>Excelência operacional:</strong> qualidade e eficiência em todas as entregas.</li>
+        <li><strong>Inovação com propósito:</strong> tecnologia aplicada para gerar resultados reais.</li>
+        <li><strong>Transparência:</strong> relações claras, honestas e de confiança.</li>
+        <li><strong>Foco em resultados:</strong> soluções práticas orientadas ao crescimento.</li>
+      </ul>
+
+    </div>
+  </div>
+</main>
+
+
+
+  <footer>
+    <div class="container">
+      <div class="foot">
+        <div class="brand" style="color:var(--navy)">
+          <img class="logo" src="assets/logo.png" alt="Sync IT" style="filter:none;height:34px" />
+          <span>SYNC IT</span>
+        </div>
+        <div class="small">© <span id="year"></span> Sync IT • Infraestrutura • Segurança • Cloud • Help Desk</div>
+      </div>
+    </div>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+      const wa = `https://wa.me/${window.SYNCIT.whatsapp}`;
+      const btnTop = document.getElementById("btnTopWhats");
+      if (btnTop) btnTop.href = wa;
+      document.getElementById("btnWhats").href = wa;
+      document.getElementById("btnWhats2").href = wa;
+    </script>
+  </footer>
+</body>
+</html>

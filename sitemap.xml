@@ -3,58 +3,38 @@
 
   <url>
     <loc>https://syncit.com.br/</loc>
-    <lastmod>2026-01-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://syncit.com.br/sobre-nos</loc>
-    <lastmod>2026-01-05</lastmod>
+    <loc>https://syncit.com.br/sobre.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://syncit.com.br/infraestrutura-de-ti</loc>
-    <lastmod>2026-01-05</lastmod>
+    <loc>https://syncit.com.br/infraestrutura-ti.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://syncit.com.br/seguranca-da-informacao</loc>
-    <lastmod>2026-01-05</lastmod>
+    <loc>https://syncit.com.br/seguranca-informacao.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://syncit.com.br/computacao-em-nuvem</loc>
-    <lastmod>2026-01-05</lastmod>
+    <loc>https://syncit.com.br/computacao-nuvem.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://syncit.com.br/gestao-de-ti-terceirizada</loc>
-    <lastmod>2026-01-05</lastmod>
+    <loc>https://syncit.com.br/gestao-ti.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://syncit.com.br/help-desk</loc>
-    <lastmod>2026-01-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://syncit.com.br/contato</loc>
-    <lastmod>2026-01-05</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
   </url>
 
 </urlset>

@@ -274,5 +274,28 @@
       document.getElementById("btnWhats2").href = wa;
     </script>
   </footer>
+
+<!-- Conversão Google Ads - Clique WhatsApp -->
+<script>
+  function reportWhatsAppConversion() {
+    if (typeof gtag === 'function') {
+      gtag('event', 'conversion', {
+        'send_to': 'AW-17834083730/8TuCmC2l8tObEJKL-rdC'
+      });
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    ['btnTopWhats', 'btnHeroWhats', 'btnCtaWhats'].forEach(function(id){
+      var el = document.getElementById(id);
+      if (el) {
+        el.addEventListener('click', function () {
+          reportWhatsAppConversion();
+        });
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
